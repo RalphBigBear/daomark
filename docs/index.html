@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DaoMark — 道韵笔记</title>
+  <meta name="description" content="DaoMark — The Way of Markdown. A minimalist, Dao-inspired Markdown editor. 道韵笔记 — 大道至简的 Markdown 编辑器。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai:wght@300;400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink-0: #f8f6f2;
+      --ink-1: #f0ede6;
+      --ink-3: #d4cec0;
+      --ink-5: #7a7265;
+      --ink-7: #3d3830;
+      --ink-8: #2a2520;
+      --dao-green: #5a8a6e;
+      --dao-blue: #5b7a8c;
+      --font-body: 'LXGW WenKai', Georgia, serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink-0);
+      color: var(--ink-7);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '道';
+      position: absolute;
+      font-size: min(40vw, 360px);
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--dao-green);
+      opacity: 0.04;
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      margin-bottom: 32px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--ink-8);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      color: var(--ink-5);
+      letter-spacing: 0.06em;
+      margin-bottom: 40px;
+    }
+
+    .hero-verse {
+      font-size: 1.1rem;
+      color: var(--ink-5);
+      opacity: 0.6;
+      letter-spacing: 0.12em;
+      line-height: 2.2;
+      margin-bottom: 48px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--dao-green);
+      color: white;
+      box-shadow: 0 4px 16px rgba(90,138,110,0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(90,138,110,0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink-7);
+      border: 1px solid var(--ink-3);
+    }
+    .btn-secondary:hover {
+      background: rgba(90,138,110,0.06);
+      border-color: var(--dao-green);
+      color: var(--dao-green);
+    }
+
+    /* ─── Scroll indicator ─── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.3;
+      animation: bounce 2s ease infinite;
+    }
+    .scroll-hint svg { width: 24px; height: 24px; stroke: var(--ink-5); }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── Sections ─── */
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--ink-8);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--ink-5);
+      font-size: 1rem;
+      margin-bottom: 56px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      max-width: 960px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ink-3) 20%, var(--ink-3) 80%, transparent);
+      opacity: 0.5;
+    }
+
+    /* ─── Screenshots ─── */
+    .screenshots {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .screenshot-item {
+      text-align: center;
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+    }
+
+    .screenshot-item img:hover {
+      transform: translateY(-4px) scale(1.005);
+      box-shadow: 0 20px 64px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .screenshot-label {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--ink-5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── Philosophy ─── */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+
+    .philosophy-card {
+      padding: 28px 24px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+      border: 0.5px solid rgba(0,0,0,0.04);
+      text-align: center;
+      transition: all 0.4s var(--ease);
+    }
+
+    .philosophy-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    }
+
+    .philosophy-card .icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .philosophy-card h3 {
+      font-size: 1.1rem;
+      color: var(--ink-8);
+      margin-bottom: 8px;
+    }
+
+    .philosophy-card p {
+      font-size: 0.88rem;
+      color: var(--ink-5);
+      line-height: 1.7;
+    }
+
+    /* ─── Features ─── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 10px;
+      transition: background 0.3s var(--ease);
+    }
+
+    .feature-item:hover { background: rgba(90,138,110,0.04); }
+
+    .feature-item .emoji { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+
+    .feature-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-8);
+      margin-bottom: 4px;
+      font-family: var(--font-ui);
+    }
+
+    .feature-item p {
+      font-size: 0.85rem;
+      color: var(--ink-5);
+      line-height: 1.6;
+    }
+
+    /* ─── Install ─── */
+    .install-block {
+      background: var(--ink-8);
+      color: var(--ink-0);
+      padding: 24px 32px;
+      border-radius: 12px;
+      font-family: 'SF Mono', 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 2;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .install-block .comment { color: rgba(255,255,255,0.35); }
+    .install-block .cmd { color: var(--dao-green); }
+    .install-block .url { color: var(--dao-blue); }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      padding: 60px 24px 40px;
+      color: var(--ink-5);
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+    }
+
+    footer .dao-char {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--dao-green);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      color: var(--dao-blue);
+      text-decoration: none;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      .hero { padding: 40px 20px; }
+      section { padding: 60px 20px; }
+      .cta-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="images/icon.png" alt="DaoMark" class="hero-icon" />
+      <h1>DaoMark</h1>
+      <p class="subtitle">道韵笔记</p>
+      <div class="hero-verse">
+        大道至简<br/>
+        The greatest truths are the simplest.
+      </div>
+      <div class="cta-group">
+        <a href="https://github.com/RalphBigBear/daomark/releases" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <a href="https://github.com/RalphBigBear/daomark" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Philosophy -->
+  <section>
+    <h2 class="section-title">设计哲学 · Philosophy</h2>
+    <p class="section-sub">道可道，非常道 — The Dao that can be told is not the eternal Dao.</p>
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <div class="icon">无</div>
+        <h3>无为 · Wu Wei</h3>
+        <p>界面隐于无形，唯文字跃然。The interface disappears. You see only your writing.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="icon">白</div>
+        <h3>留白 · Liubai</h3>
+        <p>空非空，乃万象之始。Emptiness is not nothing — it is possibility.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="icon">墨</div>
+        <h3>水墨 · Shuimo</h3>
+        <p>宣纸暖调，墨色深浅。Ink-wash palette, warm and alive.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="icon">简</div>
+        <h3>至简 · Zhi Jian</h3>
+        <p>可去则去，留者皆有其道。If it can be removed, it should be.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Screenshots -->
+  <section>
+    <h2 class="section-title">一瞥 · At a Glance</h2>
+    <p class="section-sub">清净无为，自然而然</p>
+    <div class="screenshots">
+      <div class="screenshot-item">
+        <img src="images/light-empty.png" alt="DaoMark Light Theme" loading="lazy" />
+        <p class="screenshot-label">明亮主题 · 落笔处，道自生</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/dark-editing.png" alt="DaoMark Dark Theme" loading="lazy" />
+        <p class="screenshot-label">暗色主题 · 实时预览 · 语法高亮</p>
+      </div>
+      <div class="screenshot-item">
+        <img src="images/light-editing.png" alt="DaoMark English" loading="lazy" />
+        <p class="screenshot-label">English · i18n internationalization</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Features -->
+  <section>
+    <h2 class="section-title">功能 · Features</h2>
+    <p class="section-sub">至简而不简</p>
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="emoji">⚡</span>
+        <div><h4>Live Preview</h4><p>实时预览，所见即所得 (120ms)</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">🎨</span>
+        <div><h4>Syntax Highlighting</h4><p>代码块语法高亮，典雅配色</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">🌓</span>
+        <div><h4>Light & Dark</h4><p>水墨双主题，跟随系统切换</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">🌍</span>
+        <div><h4>i18n</h4><p>中文 / English 双语国际化</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">⌨️</span>
+        <div><h4>Shortcuts</h4><p>macOS 原生快捷键 ⌘B ⌘I ⌘K ⌘S</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">📂</span>
+        <div><h4>File Operations</h4><p>原生对话框打开/保存/导出</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">↹</span>
+        <div><h4>Smart Editing</h4><p>自动配对、列表续行、Tab 缩进</p></div>
+      </div>
+      <div class="feature-item">
+        <span class="emoji">🖱️</span>
+        <div><h4>Resizable</h4><p>分栏拖拽 / 三种视图模式</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Install -->
+  <section>
+    <h2 class="section-title">开始 · Get Started</h2>
+    <p class="section-sub">三行命令，道自显现</p>
+    <div class="install-block">
+      <span class="comment"># Clone & Run</span><br/>
+      <span class="cmd">git clone</span> <span class="url">git@github.com:RalphBigBear/daomark.git</span><br/>
+      <span class="cmd">cd</span> daomark && <span class="cmd">npm install</span><br/>
+      <span class="cmd">npm run</span> tauri:dev &nbsp; <span class="comment"># Native desktop</span><br/>
+      <span class="cmd">npm run</span> dev &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># Web browser</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="dao-char">道</span>
+    <p>
+      <a href="https://github.com/RalphBigBear/daomark">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/RalphBigBear/daomark/releases">Releases</a>
+      &nbsp;·&nbsp;
+      MIT License
+    </p>
+    <p style="margin-top: 16px; opacity: 0.5;">大道至简</p>
+  </footer>
+
+</body>
+</html>
