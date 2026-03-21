@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "DaoMark",
+    "logo": "道韵笔记",
+    "tagline": "The Way of Markdown",
+    "placeholder": "Where the brush lands, the Dao arises\u2026",
+    "emptyTitle": "Dao",
+    "emptyVerse1": "Where the brush lands, the Dao arises",
+    "emptyVerse2": "In the blank space, meaning rests free"
+  },
+  "toolbar": {
+    "new": "New (⌘N)",
+    "open": "Open (⌘O)",
+    "save": "Save (⌘S)",
+    "export": "Export HTML",
+    "quickSave": "Quick Save (direct download)",
+    "bold": "Bold (⌘B)",
+    "italic": "Italic (⌘I)",
+    "heading": "Heading",
+    "strikethrough": "Strikethrough (⌘⇧X)",
+    "quote": "Blockquote",
+    "code": "Inline Code (⌘E)",
+    "codeblock": "Code Block (⌘⇧K)",
+    "ul": "Unordered List",
+    "ol": "Ordered List",
+    "task": "Task List",
+    "link": "Link (⌘K)",
+    "image": "Image",
+    "hr": "Horizontal Rule",
+    "table": "Table",
+    "viewMode": "Toggle View",
+    "theme": "Toggle Theme",
+    "lang": "中文"
+  },
+  "status": {
+    "brand": "DaoMark",
+    "unsaved": "● Unsaved",
+    "saved": "✓ Saved",
+    "words": "{n} words",
+    "lines": "{n} lines",
+    "cursor": "Ln {line}, Col {col}"
+  },
+  "dialog": {
+    "unsavedConfirm": "Current document has unsaved changes. Create new anyway?",
+    "mdFiles": "Markdown Files",
+    "textFiles": "Text Files"
+  },
+  "format": {
+    "boldPlaceholder": "bold text",
+    "italicPlaceholder": "italic text",
+    "strikePlaceholder": "strikethrough text",
+    "linkPlaceholder": "link text",
+    "imagePlaceholder": "image description",
+    "codePlaceholder": "code",
+    "tableSample": "\n| Col 1 | Col 2 | Col 3 |\n| --- | --- | --- |\n| cell | cell | cell |\n"
+  }
+}

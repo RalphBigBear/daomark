@@ -1,0 +1,716 @@
+/* ═══════════════════════════════════════════════════
+   DaoMark — Design System / 道韵笔记设计系统
+   大道至简
+   ═══════════════════════════════════════════════════ */
+
+/* ─── 字体 ─── */
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── 明亮主题（默认） ─── */
+:root {
+  /* 水墨色调 */
+  --ink-0: #f8f6f2;        /* 宣纸底色 */
+  --ink-1: #f0ede6;        /* 次底色 */
+  --ink-2: #e5e0d5;        /* 边界 */
+  --ink-3: #d4cec0;        /* 分割线 */
+  --ink-4: #a8a08e;        /* 辅助文字 */
+  --ink-5: #7a7265;        /* 次文字 */
+  --ink-6: #5c554a;        /* 主文字 */
+  --ink-7: #3d3830;        /* 标题 */
+  --ink-8: #2a2520;        /* 深墨 */
+  --ink-9: #1a1612;        /* 极深 */
+
+  /* 点睛色 — 山水画色调 */
+  --dao-green: #5a8a6e;    /* 青山 */
+  --dao-blue: #5b7a8c;     /* 远水 */
+  --dao-red: #b85c5c;      /* 朱砂 */
+  --dao-gold: #b8975a;     /* 古金 */
+  --dao-purple: #7d6b8a;   /* 紫烟 */
+
+  /* 功能色 */
+  --bg-app: var(--ink-0);
+  --bg-editor: #fffdf9;
+  --bg-preview: var(--ink-0);
+  --bg-toolbar: rgba(248, 246, 242, 0.82);
+  --bg-statusbar: rgba(248, 246, 242, 0.72);
+  --bg-hover: rgba(90, 138, 110, 0.08);
+  --bg-active: rgba(90, 138, 110, 0.14);
+  --bg-code: rgba(42, 37, 32, 0.05);
+  --bg-code-block: #faf8f4;
+  --bg-blockquote: rgba(90, 138, 110, 0.05);
+
+  --text-primary: var(--ink-7);
+  --text-secondary: var(--ink-5);
+  --text-muted: var(--ink-4);
+  --text-heading: var(--ink-8);
+  --text-link: var(--dao-blue);
+  --text-code: var(--dao-red);
+
+  --border-color: var(--ink-2);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --shadow-toolbar: 0 1px 3px rgba(0, 0, 0, 0.04), 0 0 0 0.5px rgba(0,0,0,0.04);
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --scrollbar-thumb: rgba(0, 0, 0, 0.12);
+  --scrollbar-hover: rgba(0, 0, 0, 0.2);
+
+  /* 尺寸 */
+  --toolbar-height: 44px;
+  --statusbar-height: 28px;
+  --radius: 8px;
+  --radius-sm: 5px;
+
+  /* 过渡 — 禅意缓动 */
+  --ease-dao: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s var(--ease-dao);
+  --transition-smooth: 0.3s var(--ease-dao);
+  --transition-slow: 0.5s var(--ease-dao);
+
+  /* 字体 */
+  --font-body: 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+  --font-code: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --font-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+
+  color-scheme: light;
+}
+
+/* ─── 暗色主题 ─── */
+[data-theme="dark"] {
+  --ink-0: #1a1816;
+  --ink-1: #22201c;
+  --ink-2: #2e2b26;
+  --ink-3: #3d3830;
+  --ink-4: #5c554a;
+  --ink-5: #8a8275;
+  --ink-6: #b0a898;
+  --ink-7: #d4cec0;
+  --ink-8: #e8e3d8;
+  --ink-9: #f5f2ec;
+
+  --dao-green: #7aaa8e;
+  --dao-blue: #7b9aac;
+  --dao-red: #d87c7c;
+  --dao-gold: #d8b77a;
+  --dao-purple: #9d8baa;
+
+  --bg-app: var(--ink-0);
+  --bg-editor: #1e1c18;
+  --bg-preview: var(--ink-0);
+  --bg-toolbar: rgba(26, 24, 22, 0.85);
+  --bg-statusbar: rgba(26, 24, 22, 0.75);
+  --bg-hover: rgba(122, 170, 142, 0.08);
+  --bg-active: rgba(122, 170, 142, 0.15);
+  --bg-code: rgba(255, 255, 255, 0.06);
+  --bg-code-block: #242118;
+  --bg-blockquote: rgba(122, 170, 142, 0.06);
+
+  --text-primary: var(--ink-7);
+  --text-secondary: var(--ink-5);
+  --text-muted: var(--ink-4);
+  --text-heading: var(--ink-8);
+  --text-link: var(--dao-blue);
+  --text-code: var(--dao-red);
+
+  --border-color: var(--ink-2);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --shadow-toolbar: 0 1px 3px rgba(0, 0, 0, 0.2), 0 0 0 0.5px rgba(255,255,255,0.04);
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.15);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  --scrollbar-hover: rgba(255, 255, 255, 0.22);
+
+  color-scheme: dark;
+}
+
+/* ─── 基础重置 ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── 滚动条 ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+/* ═══════════════════════════════════════════════════
+   工具栏
+   ═══════════════════════════════════════════════════ */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--toolbar-height);
+  padding: 0 12px;
+  background: var(--bg-toolbar);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid var(--border-subtle);
+  box-shadow: var(--shadow-toolbar);
+  flex-shrink: 0;
+  z-index: 100;
+  user-select: none;
+  -webkit-app-region: drag;
+  transition: background var(--transition-smooth);
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+}
+
+.toolbar-center {
+  gap: 1px;
+}
+
+.app-logo {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dao-green);
+  padding: 2px 8px;
+  letter-spacing: 0.02em;
+  cursor: default;
+  transition: color var(--transition-smooth);
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 6px;
+  opacity: 0.5;
+}
+
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+.toolbar-btn svg {
+  width: 16px;
+  height: 16px;
+}
+.toolbar-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.toolbar-btn:active {
+  background: var(--bg-active);
+  transform: scale(0.94);
+}
+.toolbar-btn.active {
+  background: var(--bg-active);
+  color: var(--dao-green);
+}
+
+/* 工具栏提示 */
+.toolbar-btn::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.92);
+  padding: 4px 8px;
+  background: var(--ink-8);
+  color: var(--ink-0);
+  font-size: 11px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s var(--ease-dao);
+  z-index: 200;
+  font-family: var(--font-ui);
+}
+.toolbar-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Language toggle text button */
+.toolbar-btn-text {
+  width: auto;
+  padding: 0 8px;
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════════════
+   编辑器区域
+   ═══════════════════════════════════════════════════ */
+.editor-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.pane {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: flex var(--transition-smooth);
+}
+
+.editor-pane {
+  border-right: 0.5px solid var(--border-subtle);
+}
+
+.editor-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 32px 40px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: var(--bg-editor);
+  color: var(--text-primary);
+  font-family: var(--font-code);
+  font-size: 14.5px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  tab-size: 2;
+  -moz-tab-size: 2;
+  overflow-y: auto;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+.editor-textarea::placeholder {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-style: normal;
+  opacity: 0.6;
+}
+
+.editor-textarea:focus {
+  outline: none;
+}
+
+/* ─── 拖拽分割线 ─── */
+.resize-handle {
+  width: 5px;
+  cursor: col-resize;
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 10;
+  transition: background var(--transition-fast);
+}
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 32px;
+  border-radius: 2px;
+  background: var(--border-color);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.resize-handle:hover::after,
+.resize-handle.active::after {
+  opacity: 0.5;
+}
+.resize-handle:hover,
+.resize-handle.active {
+  background: var(--bg-hover);
+}
+
+/* ─── 预览区 ─── */
+.preview-pane {
+  background: var(--bg-preview);
+  overflow-y: auto;
+  transition: background var(--transition-smooth);
+}
+
+.preview-content {
+  padding: 32px 48px;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+/* ─── 视图模式 ─── */
+.editor-container[data-view="editor-only"] .preview-pane,
+.editor-container[data-view="editor-only"] .resize-handle {
+  display: none;
+}
+.editor-container[data-view="editor-only"] .editor-pane {
+  border-right: none;
+}
+
+.editor-container[data-view="preview-only"] .editor-pane,
+.editor-container[data-view="preview-only"] .resize-handle {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   Markdown 渲染样式 — 道韵排版
+   ═══════════════════════════════════════════════════ */
+.markdown-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-primary);
+  word-wrap: break-word;
+}
+
+/* 标题 — 书法气韵 */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: var(--text-heading);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.02em;
+}
+
+.markdown-body h1 {
+  font-size: 1.85em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-body h2 {
+  font-size: 1.45em;
+  padding-bottom: 0.3em;
+  border-bottom: 0.5px solid var(--border-subtle);
+}
+
+.markdown-body h3 { font-size: 1.2em; }
+.markdown-body h4 { font-size: 1.05em; }
+.markdown-body h5 { font-size: 0.95em; color: var(--text-secondary); }
+.markdown-body h6 { font-size: 0.88em; color: var(--text-muted); }
+
+.markdown-body h1:first-child,
+.markdown-body h2:first-child,
+.markdown-body h3:first-child {
+  margin-top: 0;
+}
+
+/* 段落 */
+.markdown-body p {
+  margin-bottom: 1em;
+}
+
+/* 链接 */
+.markdown-body a {
+  color: var(--text-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+.markdown-body a:hover {
+  border-bottom-color: var(--text-link);
+}
+
+/* 加粗 & 斜体 */
+.markdown-body strong {
+  font-weight: 700;
+  color: var(--text-heading);
+}
+.markdown-body em {
+  font-style: italic;
+}
+
+/* 删除线 */
+.markdown-body del {
+  color: var(--text-muted);
+}
+
+/* 分割线 — 水墨意境 */
+.markdown-body hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ink-3) 20%,
+    var(--ink-4) 50%,
+    var(--ink-3) 80%,
+    transparent
+  );
+  margin: 2.5em 0;
+}
+
+/* 引用块 — 留白禅意 */
+.markdown-body blockquote {
+  margin: 1.2em 0;
+  padding: 0.8em 1.2em;
+  border-left: 3px solid var(--dao-green);
+  background: var(--bg-blockquote);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.markdown-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 行内代码 */
+.markdown-body code {
+  font-family: var(--font-code);
+  font-size: 0.88em;
+  padding: 0.15em 0.45em;
+  background: var(--bg-code);
+  color: var(--text-code);
+  border-radius: 4px;
+}
+
+/* 代码块 */
+.markdown-body pre {
+  margin: 1.2em 0;
+  padding: 1em 1.2em;
+  background: var(--bg-code-block);
+  border: 0.5px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+.markdown-body pre code {
+  font-size: 13.5px;
+  padding: 0;
+  background: none;
+  color: var(--text-primary);
+  border-radius: 0;
+}
+
+/* 列表 */
+.markdown-body ul,
+.markdown-body ol {
+  margin-bottom: 1em;
+  padding-left: 1.8em;
+}
+.markdown-body li {
+  margin-bottom: 0.3em;
+}
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin-bottom: 0;
+}
+
+/* 任务列表 */
+.markdown-body ul li input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: var(--dao-green);
+}
+
+/* 表格 */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.92em;
+}
+.markdown-body th,
+.markdown-body td {
+  padding: 0.65em 1em;
+  border: 0.5px solid var(--border-color);
+  text-align: left;
+}
+.markdown-body th {
+  background: var(--bg-code);
+  font-weight: 700;
+  color: var(--text-heading);
+}
+.markdown-body tr:nth-child(even) {
+  background: var(--bg-code);
+}
+
+/* 图片 */
+.markdown-body img {
+  max-width: 100%;
+  border-radius: var(--radius);
+  margin: 1em 0;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* 脚注 */
+.markdown-body .footnotes {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.88em;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════
+   highlight.js 主题覆盖 — 道韵墨色
+   ═══════════════════════════════════════════════════ */
+.hljs {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+.hljs-comment,
+.hljs-quote { color: var(--ink-4); font-style: italic; }
+.hljs-keyword,
+.hljs-selector-tag { color: var(--dao-purple); font-weight: 500; }
+.hljs-string,
+.hljs-addition { color: var(--dao-green); }
+.hljs-number,
+.hljs-literal { color: var(--dao-gold); }
+.hljs-built_in,
+.hljs-type { color: var(--dao-blue); }
+.hljs-title,
+.hljs-section,
+.hljs-name { color: var(--dao-red); font-weight: 500; }
+.hljs-attr,
+.hljs-attribute { color: var(--dao-gold); }
+.hljs-variable,
+.hljs-template-variable { color: var(--dao-red); }
+.hljs-deletion { color: var(--dao-red); background: rgba(184, 92, 92, 0.1); }
+.hljs-meta { color: var(--ink-5); }
+.hljs-punctuation { color: var(--ink-5); }
+
+/* ═══════════════════════════════════════════════════
+   状态栏
+   ═══════════════════════════════════════════════════ */
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--statusbar-height);
+  padding: 0 14px;
+  background: var(--bg-statusbar);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-top: 0.5px solid var(--border-subtle);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  user-select: none;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+.statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-hint {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
+.status-item {
+  font-family: var(--font-code);
+  font-size: 11px;
+}
+
+.status-dot {
+  opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════════════════
+   动画 — 禅意过渡
+   ═══════════════════════════════════════════════════ */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.preview-content > * {
+  animation: fade-in 0.4s var(--ease-dao) both;
+}
+
+/* 欢迎占位符 */
+.preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  text-align: center;
+  animation: fade-in 0.6s var(--ease-dao) both;
+}
+
+.preview-empty .dao-symbol {
+  font-size: 64px;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--dao-green);
+  opacity: 0.25;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.preview-empty .dao-verse {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 2;
+  opacity: 0.4;
+  letter-spacing: 0.08em;
+}
+
+/* ─── 响应式 ─── */
+@media (max-width: 768px) {
+  .toolbar-center {
+    display: none;
+  }
+  .editor-textarea {
+    padding: 20px 24px;
+  }
+  .preview-content {
+    padding: 20px 24px;
+  }
+}

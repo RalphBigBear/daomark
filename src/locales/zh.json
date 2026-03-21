@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "道韵笔记",
+    "logo": "道韵笔记",
+    "tagline": "大道至简的 Markdown 编辑器",
+    "placeholder": "落笔处，道自生\u2026",
+    "emptyTitle": "道",
+    "emptyVerse1": "落笔处，道自生",
+    "emptyVerse2": "留白处，意自在"
+  },
+  "toolbar": {
+    "new": "新建 (⌘N)",
+    "open": "打开 (⌘O)",
+    "save": "保存 (⌘S)",
+    "export": "导出 HTML",
+    "quickSave": "快速保存 (直接下载)",
+    "bold": "加粗 (⌘B)",
+    "italic": "斜体 (⌘I)",
+    "heading": "标题",
+    "strikethrough": "删除线 (⌘⇧X)",
+    "quote": "引用",
+    "code": "行内代码 (⌘E)",
+    "codeblock": "代码块 (⌘⇧K)",
+    "ul": "无序列表",
+    "ol": "有序列表",
+    "task": "任务列表",
+    "link": "链接 (⌘K)",
+    "image": "图片",
+    "hr": "分割线",
+    "table": "表格",
+    "viewMode": "切换视图",
+    "theme": "切换主题",
+    "lang": "EN"
+  },
+  "status": {
+    "brand": "道韵笔记",
+    "unsaved": "● 未保存",
+    "saved": "✓ 已保存",
+    "words": "{n} 字",
+    "lines": "{n} 行",
+    "cursor": "行 {line}, 列 {col}"
+  },
+  "dialog": {
+    "unsavedConfirm": "当前文档尚未保存，确定要新建吗？",
+    "mdFiles": "Markdown 文件",
+    "textFiles": "文本文件"
+  },
+  "format": {
+    "boldPlaceholder": "粗体文字",
+    "italicPlaceholder": "斜体文字",
+    "strikePlaceholder": "删除线文字",
+    "linkPlaceholder": "链接文字",
+    "imagePlaceholder": "图片描述",
+    "codePlaceholder": "code",
+    "tableSample": "\n| 列1 | 列2 | 列3 |\n| --- | --- | --- |\n| 内容 | 内容 | 内容 |\n"
+  }
+}
