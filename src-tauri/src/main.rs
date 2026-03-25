@@ -170,11 +170,13 @@ fn main() {
         .build(tauri::generate_context!())
         .expect("error while building DaoMark")
         .run(|app_handle, event| {
-            // macOS: click dock icon → reopen window if none visible
+            // macOS only: click dock icon → reopen window if none visible
+            #[cfg(target_os = "macos")]
             if let tauri::RunEvent::Reopen { has_visible_windows, .. } = event {
                 if !has_visible_windows {
                     create_new_window(app_handle);
                 }
             }
+            let _ = (app_handle, event); // suppress unused warnings on non-macOS
         });
 }
