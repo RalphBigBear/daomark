@@ -53,5 +53,37 @@
     "imagePlaceholder": "image description",
     "codePlaceholder": "code",
     "tableSample": "\n| Col 1 | Col 2 | Col 3 |\n| --- | --- | --- |\n| cell | cell | cell |\n"
+  },
+  "search": {
+    "placeholder": "Search…",
+    "replacePlaceholder": "Replace…",
+    "replaceBtn": "Replace",
+    "replaceAllBtn": "Replace All",
+    "noMatch": "No matches",
+    "prev": "Previous",
+    "next": "Next",
+    "toggleReplace": "Toggle Replace",
+    "close": "Close"
+  },
+  "help": {
+    "shortcuts": "Keyboard Shortcuts"
+  },
+  "shortcut": {
+    "new": "New Document",
+    "open": "Open File",
+    "save": "Save",
+    "saveAs": "Save As",
+    "print": "Print",
+    "close": "Close Window",
+    "newWindow": "New Window",
+    "find": "Find",
+    "replace": "Find & Replace",
+    "bold": "Bold",
+    "italic": "Italic",
+    "link": "Link",
+    "code": "Inline Code",
+    "codeblock": "Code Block",
+    "strikethrough": "Strikethrough",
+    "shortcuts": "Keyboard Shortcuts"
   }
 }

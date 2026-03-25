@@ -5,7 +5,9 @@
 
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
+import markedKatex from 'marked-katex-extension';
 import hljs from 'highlight.js';
+import 'katex/dist/katex.min.css';
 import { debounce, countWords, countLines, getCursorPosition } from './utils.js';
 import { t, getLang, onLangChange } from './i18n.js';
 
@@ -27,7 +29,24 @@ const marked = new Marked(
   })
 );
 
-marked.setOptions({ breaks: true, gfm: true });
+marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
+marked.setOptions({ gfm: true });
+
+/**
+ * Preprocess block math: normalize $$...$$ blocks with newlines.
+ * Handles:  $$\n...\n$$  and  $$\n...\n$$  with varying whitespace.
+ * Converts multiline $$ blocks into single-line $$...$$ so that
+ * marked-katex-extension can parse them before paragraph splitting.
+ */
+function preprocessBlockMath(text) {
+  // Match $$ on its own line (possibly with trailing spaces),
+  // capture content until $$ on its own line
+  return text.replace(/^\$\$\s*\n([\s\S]*?)\n\s*\$\$\s*$/gm, (match, content) => {
+    // Trim each line and join with spaces for inline display
+    const trimmed = content.trim();
+    return `$$${trimmed}$$`;
+  });
+}
 
 /** Render Markdown to preview */
 function renderPreview() {
@@ -43,7 +62,7 @@ function renderPreview() {
       </div>`;
     return;
   }
-  previewEl.innerHTML = marked.parse(text);
+  previewEl.innerHTML = marked.parse(preprocessBlockMath(text));
 }
 
 /** Update status bar */

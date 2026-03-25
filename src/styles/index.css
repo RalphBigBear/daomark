@@ -714,3 +714,316 @@ html, body {
     padding: 20px 24px;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   Search Panel / 搜索面板
+   ═══════════════════════════════════════════════════ */
+
+.search-panel {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--ink-1);
+  border-bottom: 0.5px solid var(--ink-2);
+  z-index: 100;
+}
+
+.search-panel.visible {
+  display: flex;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-replace-row {
+  display: none;
+}
+
+.search-replace-row.visible {
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  padding: 5px 10px;
+  border: 0.5px solid var(--ink-2);
+  border-radius: 6px;
+  background: var(--ink-0);
+  color: var(--ink-7);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--dao-green);
+}
+
+.search-match-count {
+  font-size: 11px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  min-width: 48px;
+  text-align: center;
+  font-family: var(--font-ui);
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink-5);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s ease;
+}
+
+.search-btn:hover {
+  background: var(--ink-2);
+  color: var(--ink-7);
+}
+
+.search-btn-text {
+  width: auto;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  border: 0.5px solid var(--ink-2);
+  border-radius: 5px;
+}
+
+.search-btn-text:hover {
+  border-color: var(--dao-green);
+  color: var(--dao-green);
+}
+
+/* ═══════════════════════════════════════════════════
+   Modal Overlay / 弹窗遮罩
+   ═══════════════════════════════════════════════════ */
+
+.dao-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.dao-overlay.visible {
+  opacity: 1;
+}
+
+.dao-modal {
+  background: var(--ink-0);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.08);
+  padding: 32px;
+  max-width: 440px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalIn 0.25s ease;
+}
+
+@keyframes modalIn {
+  from { transform: translateY(12px) scale(0.97); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ─── About Modal ─── */
+.dao-about-modal {
+  text-align: center;
+  padding: 40px 32px;
+}
+
+.dao-about-modal .about-icon {
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--dao-green);
+  opacity: 0.6;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+
+.dao-about-modal h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink-8);
+  margin-bottom: 2px;
+}
+
+.dao-about-modal .about-subtitle {
+  font-size: 1rem;
+  color: var(--ink-5);
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.dao-about-modal .about-version {
+  font-size: 0.85rem;
+  color: var(--ink-4);
+  font-family: var(--font-ui);
+  margin-bottom: 16px;
+}
+
+.dao-about-modal .about-tagline {
+  font-size: 0.9rem;
+  color: var(--ink-5);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.dao-about-modal .about-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-3), transparent);
+  margin: 16px 0;
+}
+
+.dao-about-modal .about-copy {
+  font-size: 0.8rem;
+  color: var(--ink-4);
+  margin-bottom: 8px;
+}
+
+.dao-about-modal .about-link {
+  font-size: 0.85rem;
+  color: var(--dao-blue);
+  text-decoration: none;
+}
+
+.dao-about-modal .about-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── Shortcuts Modal ─── */
+.dao-shortcuts-modal {
+  padding: 28px 32px;
+}
+
+.dao-shortcuts-modal h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink-7);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.shortcut-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shortcut-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 4px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.shortcut-row:hover {
+  background: rgba(90, 138, 110, 0.05);
+}
+
+.shortcut-label {
+  font-size: 0.88rem;
+  color: var(--ink-6);
+}
+
+.shortcut-key {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-5);
+  background: var(--ink-1);
+  border: 0.5px solid var(--ink-2);
+  border-radius: 5px;
+  padding: 2px 10px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.shortcut-separator {
+  height: 1px;
+  background: var(--ink-2);
+  margin: 6px 0;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════
+   Print Styles / 打印样式
+   ═══════════════════════════════════════════════════ */
+
+@media print {
+  /* Hide everything except preview content */
+  .toolbar,
+  .statusbar,
+  .editor-pane,
+  .resize-handle,
+  .search-panel,
+  .dao-overlay {
+    display: none !important;
+  }
+
+  /* Unlock ALL layout constraints for multi-page flow */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: #333 !important;
+    font-size: 100% !important;
+  }
+
+  #app,
+  .editor-container,
+  .preview-pane,
+  .preview-content {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    flex: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .preview-content {
+    padding: 20px !important;
+    max-width: none !important;
+  }
+
+  /* Page break hints */
+  .preview-content h1,
+  .preview-content h2,
+  .preview-content h3 {
+    page-break-after: avoid;
+  }
+
+  .preview-content pre,
+  .preview-content blockquote,
+  .preview-content table,
+  .preview-content img {
+    page-break-inside: avoid;
+  }
+}

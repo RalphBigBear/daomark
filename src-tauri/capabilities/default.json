@@ -1,10 +1,12 @@
 {
   "identifier": "default",
   "description": "DaoMark default capabilities",
-  "windows": ["main"],
+  "windows": ["main", "daomark_*"],
   "permissions": [
     "core:default",
     "core:window:allow-set-title",
+    "core:window:allow-create",
+    "core:window:allow-close",
     "opener:default",
     "dialog:default",
     "dialog:allow-save",

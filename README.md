@@ -42,8 +42,13 @@ In a world of bloated editors with hundreds of features, DaoMark takes the oppos
 - 🎨 **Syntax Highlighting** — Code blocks with elegant color themes
 - 🌓 **Light & Dark Themes** — Ink-wash aesthetics in both modes
 - 🌍 **i18n** — Full Chinese & English internationalization
-- ⌨️ **macOS Shortcuts** — ⌘B, ⌘I, ⌘K, ⌘S, and more
-- 📂 **File Operations** — Open, Save, Save As, Export HTML
+- ⌨️ **Native Menus** — File / Edit / Window / Help with macOS-native keyboard shortcuts
+- 🪟 **Multi-Window** — Open multiple independent editor windows (⌘⇧N)
+- 🖨️ **System Print** — Print directly or export to PDF via native dialog (⌘P)
+- 📐 **LaTeX Math** — Inline `$...$` and block `$$...$$` formula rendering (KaTeX)
+- 🔍 **Find & Replace** — In-editor search (⌘F) with toggle replace (⌘H)
+- ❓ **Shortcut Reference** — Quick keyboard shortcuts panel (⌘/)
+- 📂 **File Operations** — New, Open, Save, Save As, Export HTML, Quick Save
 - 📊 **Smart Status Bar** — Word count, line count, cursor position
 - 🔄 **Scroll Sync** — Editor and preview scroll together
 - ↹ **Smart Editing** — Auto-pair brackets, auto-continue lists, Tab indent
@@ -55,10 +60,10 @@ In a world of bloated editors with hundreds of features, DaoMark takes the oppos
 | Layer | Choice | Why |
 |-------|--------|-----|
 | Frontend | Vite + Vanilla JS | Zero framework. Pure simplicity. |
-| Markdown | marked.js | Fast, lightweight, extensible. |
+| Markdown | marked.js + KaTeX | Fast parsing + beautiful math. |
 | Highlighting | highlight.js | Elegant code coloring. |
 | Typography | LXGW WenKai (霞鹜文楷) | Calligraphic beauty. |
-| Native | **Tauri** | Rust-powered. ~5MB binary. The Dao of desktop apps. |
+| Native | **Tauri v2** | Rust-powered. ~5MB binary. The Dao of desktop apps. |
 
 ---
 
@@ -133,9 +138,12 @@ daomark/
 ├── vite.config.js              # Vite config / 构建配置
 ├── src/
 │   ├── main.js                 # Entry / 入口
-│   ├── editor.js               # Editor core / 编辑器核心
+│   ├── editor.js               # Editor core + KaTeX / 编辑器核心
 │   ├── toolbar.js              # Toolbar & shortcuts / 工具栏
 │   ├── file-ops.js             # File operations / 文件操作
+│   ├── search.js               # Find & Replace / 搜索替换
+│   ├── help.js                 # About & Shortcuts panel / 帮助面板
+│   ├── print.js                # Native print / 原生打印
 │   ├── theme.js                # Theme manager / 主题管理
 │   ├── i18n.js                 # Internationalization / 国际化
 │   ├── utils.js                # Utilities / 工具函数
@@ -148,7 +156,7 @@ daomark/
     ├── Cargo.toml              # Rust dependencies
     ├── tauri.conf.json         # Tauri config
     └── src/
-        └── main.rs             # Rust entry
+        └── main.rs             # Native menus & multi-window / 原生菜单
 ```
 
 ---
@@ -157,16 +165,22 @@ daomark/
 
 | Shortcut | Action |
 |----------|--------|
+| `⌘N` | New / 新建 |
+| `⌘O` | Open / 打开 |
+| `⌘S` | Save / 保存 |
+| `⌘⇧S` | Save as / 另存为 |
+| `⌘P` | Print / 打印 |
+| `⌘W` | Close window / 关闭窗口 |
+| `⌘⇧N` | New window / 新建窗口 |
+| `⌘F` | Find / 搜索 |
+| `⌘H` | Find & Replace / 搜索替换 |
 | `⌘B` | Bold / 加粗 |
 | `⌘I` | Italic / 斜体 |
 | `⌘K` | Link / 链接 |
 | `⌘E` | Inline code / 行内代码 |
 | `⌘⇧K` | Code block / 代码块 |
 | `⌘⇧X` | Strikethrough / 删除线 |
-| `⌘S` | Save / 保存 |
-| `⌘⇧S` | Save as / 另存为 |
-| `⌘N` | New / 新建 |
-| `⌘O` | Open / 打开 |
+| `⌘/` | Keyboard shortcuts / 快捷键参考 |
 | `Tab` | Indent / 缩进 |
 | `⇧Tab` | Outdent / 反缩进 |
 

@@ -1,7 +1,7 @@
 {
   "name": "daomark",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "DaoMark — The Way of Markdown. 道韵笔记 — 大道至简的 Markdown 编辑器。",
   "author": "DaoMark Contributors",
@@ -28,7 +28,9 @@
     "@tauri-apps/plugin-dialog": "^2.6.0",
     "@tauri-apps/plugin-fs": "^2.4.5",
     "highlight.js": "^11.11.0",
+    "katex": "^0.16.42",
     "marked": "^15.0.0",
-    "marked-highlight": "^2.2.0"
+    "marked-highlight": "^2.2.0",
+    "marked-katex-extension": "^5.1.7"
   }
 }

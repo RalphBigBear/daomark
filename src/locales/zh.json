@@ -53,5 +53,37 @@
     "imagePlaceholder": "图片描述",
     "codePlaceholder": "code",
     "tableSample": "\n| 列1 | 列2 | 列3 |\n| --- | --- | --- |\n| 内容 | 内容 | 内容 |\n"
+  },
+  "search": {
+    "placeholder": "搜索…",
+    "replacePlaceholder": "替换…",
+    "replaceBtn": "替换",
+    "replaceAllBtn": "全部替换",
+    "noMatch": "无匹配",
+    "prev": "上一个",
+    "next": "下一个",
+    "toggleReplace": "展开替换",
+    "close": "关闭"
+  },
+  "help": {
+    "shortcuts": "快捷键参考"
+  },
+  "shortcut": {
+    "new": "新建文档",
+    "open": "打开文件",
+    "save": "保存",
+    "saveAs": "另存为",
+    "print": "打印",
+    "close": "关闭窗口",
+    "newWindow": "新建窗口",
+    "find": "搜索",
+    "replace": "搜索与替换",
+    "bold": "加粗",
+    "italic": "斜体",
+    "link": "链接",
+    "code": "行内代码",
+    "codeblock": "代码块",
+    "strikethrough": "删除线",
+    "shortcuts": "快捷键参考"
   }
 }
